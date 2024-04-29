@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import styles from "../components/Movie.module.css";
 
 function Detail() {
 	const { id } = useParams();
@@ -19,19 +20,27 @@ function Detail() {
 	}, []);
 
 	return (
-		<div>
+		<div className={styles.movie}>
 			{loading ? (
 				<h1>loading...</h1>
 			) : (
 				<div>
-					<img src={movieData.background_image} alt={movieData.title} />
-					<img src={movieData.medium_cover_image} alt={movieData.title} />
-					<h2>
+					<img
+						src={movieData.background_image}
+						alt={movieData.title}
+						className={styles.movie__img}
+					/>
+					<img
+						src={movieData.medium_cover_image}
+						alt={movieData.title}
+						className={styles.movie__img}
+					/>
+					<h2 className={styles.movie__title}>
 						{movieData.title} ({movieData.year})
 					</h2>
-					<h4>Runtime: {movieData.runtime} Minutes</h4>
-					<h4>Rating: {movieData.rating}</h4>
-					<ul>
+					<h4 className={styles.movie__year}>Runtime: {movieData.runtime} Minutes</h4>
+					<h4 className={styles.movie__year}>Rating: {movieData.rating}</h4>
+					<ul className={styles.movie__genres}>
 						Genre:
 						<li>
 							{movieData.genres && movieData.genres.map((g) => <li key={g}>{g}</li>)}
